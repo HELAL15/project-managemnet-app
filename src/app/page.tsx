@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import HomePage from '@/app/(delete-this-and-modify-page.tsx)/HomePage';
+import Landing from '@/components/home/Landing';
 
 /**
  * The main page component that renders the HomePage component.
@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 const Page = () => {
     return (
         <>
-            <HomePage />
+            <main>
+                <Landing />
+            </main>
         </>
     );
 };
