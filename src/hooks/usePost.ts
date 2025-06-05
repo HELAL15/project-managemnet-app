@@ -1,7 +1,7 @@
 import axiosClient from '@/lib/axiosClient';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { FieldValues } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
 import { toast } from 'sonner';
 
 interface IProps {
@@ -38,11 +38,12 @@ const usePost = ({ endpoint = '', revalid = [], onSuccess, onError, method = 'po
                 onSuccess(data);
             }
         },
-        onError: (error: any) => {
-            const errMessage = error?.response?.data?.message;
+        onError: (error) => {
+            const axiosError = error as { response?: { data?: { message?: string } } };
+            const errMessage = axiosError?.response?.data?.message || 'An error occurred';
             toast.error(errMessage);
             if (onError) {
-                onError(error);
+                onError(error as FieldValues);
             }
         }
     });
