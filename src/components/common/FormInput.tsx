@@ -19,6 +19,7 @@ interface IProps {
 
 const FormInput = ({ name, placeholder, label, type, cx, description }: IProps) => {
     const { control } = useFormContext();
+
     return (
         <>
             <FormField

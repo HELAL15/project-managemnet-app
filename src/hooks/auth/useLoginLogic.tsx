@@ -6,7 +6,8 @@ import loginSchema from '@/validations/loginSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import usePost from '../usePost';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
 
 export function useLoginLogic() {
     const router = useRouter();

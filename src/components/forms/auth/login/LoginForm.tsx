@@ -4,7 +4,8 @@ import FormInput from '@/components/common/FormInput';
 import { Button } from '@/components/ui/Button';
 import { LoginSchemaType } from '@/validations/loginSchema';
 
-import { FormProvider, SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
+import type { SubmitHandler, UseFormReturn } from 'react-hook-form';
 import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 
