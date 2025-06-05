@@ -1,25 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { useTheme } from 'next-themes';
 
 import BluredCircles from '@/components/ui/BluredCircles';
 import { Button } from '@/components/ui/Button';
 
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 
 const Landing = () => {
     const features = ['intuitive kanban board', 'real-time collaboration', 'custom workflow', 'advanced task tracking'];
-    const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'dark' || storedTheme === 'light') {
-            setTheme(storedTheme);
-        }
-    }, [theme]);
+    const { theme } = useTheme();
 
     return (
         <>
@@ -54,23 +49,38 @@ const Landing = () => {
                             </li>
                         ))}
                     </ul>
-                    {theme === 'light' ? (
-                        <Image
-                            draggable={false}
-                            src={'/images/projex-light.png'}
-                            alt='hero-image'
-                            width={1000}
-                            height={1000}
-                        />
-                    ) : (
-                        <Image
-                            draggable={false}
-                            src={'/images/projex-dark.png'}
-                            alt='hero-image'
-                            width={1000}
-                            height={1000}
-                        />
-                    )}
+                    <Image
+                        draggable={false}
+                        key={theme}
+                        src={theme === 'light' ? '/images/projex-light.png' : '/images/projex-dark.png'}
+                        alt='hero-image'
+                        width={1300}
+                        height={1300}
+                    />
+                </div>
+            </section>
+            <section>
+                <div className='container'>
+                    <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
+                        <Card>
+                            <CardContent className='space-y-4'>
+                                <Image src='/images/projex-light.png' alt='hero-image' width={1300} height={1300} />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardContent className='space-y-4'>
+                                <Image src='/images/projex-light.png' alt='hero-image' width={1300} height={1300} />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardContent className='space-y-4'>
+                                <Image src='/images/projex-light.png' alt='hero-image' width={1300} height={1300} />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </section>
         </>
