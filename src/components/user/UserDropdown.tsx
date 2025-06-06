@@ -29,9 +29,10 @@ const UserDropdown = () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
             console.error('Logout error:', error.message);
+
             return;
         }
-        // بعد تسجيل الخروج، توجه المستخدم للصفحة الرئيسية أو صفحة تسجيل الدخول
+
         router.push('/login');
         removeCookie();
     };

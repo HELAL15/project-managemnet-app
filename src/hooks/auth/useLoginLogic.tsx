@@ -49,6 +49,7 @@ export function useLoginLogic() {
 
             if (error) {
                 toast.error(error.message);
+
                 return;
             }
 
