@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
-import { Button } from '../ui/Button';
-import UserDropdown from '../user/UserDropdown';
+import ProfileAndLogin from '../user/ProfileAndLogin';
 
 const Header = () => {
     return (
@@ -11,12 +10,7 @@ const Header = () => {
                     HELAL
                 </Link>
 
-                <div className='flex items-center gap-4 lg:gap-6'>
-                    <UserDropdown />
-                    <Button className='px-8 max-lg:order-1 max-lg:hidden'>
-                        <Link href={'/login'}>login</Link>
-                    </Button>
-                </div>
+                <ProfileAndLogin />
             </div>
         </header>
     );

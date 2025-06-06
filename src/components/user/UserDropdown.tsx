@@ -1,7 +1,13 @@
+'use client';
+
 import React from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+import useCookie from '@/hooks/useCookies';
+import { supabase } from '@/lib/supabaseClient';
 
 import LangSwitcher from '../common/LanguageSwitcher';
 import { Button } from '../ui/Button';
@@ -16,6 +22,20 @@ import {
 import { LogOutIcon } from 'lucide-react';
 
 const UserDropdown = () => {
+    const router = useRouter();
+    const { removeCookie } = useCookie('sb-access-token', '');
+
+    const handleLogout = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error('Logout error:', error.message);
+            return;
+        }
+        // بعد تسجيل الخروج، توجه المستخدم للصفحة الرئيسية أو صفحة تسجيل الدخول
+        router.push('/login');
+        removeCookie();
+    };
+
     return (
         <>
             <DropdownMenu>
@@ -54,7 +74,10 @@ const UserDropdown = () => {
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
-                        <Button className='h-6 text-red-400 hover:bg-transparent hover:text-red-400' variant={'ghost'}>
+                        <Button
+                            onClick={handleLogout}
+                            className='h-6 text-red-400 hover:bg-transparent hover:text-red-400'
+                            variant={'ghost'}>
                             <LogOutIcon className='size-4 text-red-400 hover:text-red-400' />
                             logout
                         </Button>

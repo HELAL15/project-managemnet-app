@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 
 interface IProps {
     endpoint: string;
-    revalid: Array<string | number>;
+    revalid?: Array<string | number>;
     onSuccess?: (data?: FieldValues) => void;
     onError?: (error: FieldValues) => void;
     method?: string;
