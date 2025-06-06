@@ -67,8 +67,9 @@ export function useLoginLogic() {
             } else {
                 toast.error('No token received from Supabase.');
             }
-        } catch (err: any) {
-            toast.error(err.message || 'Login failed');
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : 'Login failed';
+            toast.error(errorMessage);
         }
     };
 

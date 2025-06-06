@@ -5,10 +5,11 @@ import { jwtDecode } from 'jwt-decode';
 
 function isTokenValid(token: string) {
     try {
-        const decoded: any = jwtDecode(token);
+        const decoded: { exp: string | number } = jwtDecode(token);
         if (!decoded.exp) return false;
 
-        return decoded.exp * 1000 > Date.now();
+        const expirationTime = typeof decoded.exp === 'string' ? parseInt(decoded.exp) : decoded.exp;
+        return expirationTime * 1000 > Date.now();
     } catch {
         return false;
     }
