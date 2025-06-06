@@ -9,12 +9,13 @@ function isTokenValid(token: string) {
         if (!decoded.exp) return false;
 
         const expirationTime = typeof decoded.exp === 'string' ? parseInt(decoded.exp) : decoded.exp;
+
         return expirationTime * 1000 > Date.now();
     } catch {
         return false;
     }
 }
-
+//  comment for fix deploy
 export function middleware(request: NextRequest) {
     const accessToken = request.cookies.get('sb-access-token')?.value;
 
@@ -35,5 +36,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/profile', '/login', '/register']
+    matcher: ['/profile', '/login', '/register', '/test']
 };

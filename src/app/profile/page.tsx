@@ -10,6 +10,7 @@ const Page = () => {
     return (
         <main className='p-4'>
             <h1 className='text-2xl font-bold'>ملف المستخدم</h1>
+            <h2>ddddd</h2>
             <p>البريد الإلكتروني: {email}</p>
             <p>الـ UID: {id}</p>
         </main>
