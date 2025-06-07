@@ -38,6 +38,7 @@ const UserDropdown = () => {
 
         router.push('/');
         removeCookie();
+        router.refresh();
     };
 
     return (
