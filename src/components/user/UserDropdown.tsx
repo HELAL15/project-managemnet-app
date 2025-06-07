@@ -39,6 +39,7 @@ const UserDropdown = () => {
         router.push('/');
         removeCookie();
         router.refresh();
+        window.location.reload();
     };
 
     return (
