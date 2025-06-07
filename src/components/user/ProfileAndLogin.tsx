@@ -15,7 +15,7 @@ const ProfileAndLogin = () => {
             {session ? (
                 <UserDropdown />
             ) : (
-                <Button className='px-8 max-lg:order-1 max-lg:hidden'>
+                <Button className='px-8'>
                     <Link href={'/login'}>login</Link>
                 </Button>
             )}

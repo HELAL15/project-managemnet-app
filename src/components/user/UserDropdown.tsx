@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import useCookie from '@/hooks/useCookies';
-import { supabase } from '@/lib/supabaseClient';
+import { createClient } from '@/utils/supabase/client';
 
 import LangSwitcher from '../common/LanguageSwitcher';
 import { Button } from '../ui/Button';
@@ -20,11 +20,12 @@ import {
     DropdownMenuTrigger
 } from '../ui/dropdown-menu';
 import { LogOutIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 const UserDropdown = () => {
     const router = useRouter();
     const { removeCookie } = useCookie('sb-access-token', '');
-
+    const supabase = createClient();
     const handleLogout = async () => {
         const { error } = await supabase.auth.signOut();
         if (error) {
@@ -33,7 +34,9 @@ const UserDropdown = () => {
             return;
         }
 
-        router.push('/login');
+        toast.success('you logged out successfully');
+
+        router.push('/');
         removeCookie();
     };
 
@@ -49,7 +52,7 @@ const UserDropdown = () => {
                         className='!size-9 cursor-pointer rounded-full object-cover'
                     />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className='bg-background w-[200px]'>
+                <DropdownMenuContent className='bg-background'>
                     <DropdownMenuLabel>
                         <p className='text-sm font-medium'>{'John Doe'}</p>
                         <p className='text-xs text-gray-500'>{'john.doe@example.com'}</p>
